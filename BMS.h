@@ -31,7 +31,8 @@ class BMS
     bool ValidateHighWarning(float value, parameterInfo &info);
     bool ValidateLowWarning(float value, parameterInfo &info);
     bool ValidateRange(float value, parameterInfo &info);
-    void AdjustUnit(float &value, parameterInfo& info, std::string unit);
+    bool AdjustUnit(float &value, parameterInfo& info, std::string unit);
+    bool AdjustTemperature(float& value, std::string unit);
 public:
     BMS();
     void AddParamter(parameterInfo info);
