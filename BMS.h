@@ -8,16 +8,11 @@ using namespace std;
 
 #define NO_LIMIT -555555.0
 
-enum ePARAMETER
-{
-    TEMPERATURE,
-    SOC,
-    CHARGE_RATE
-};
 
 struct parameterInfo
 {
     std::string paramterName;
+    std::string unit;
     float low_breach;
     float low_warning;
     float high_breach;
@@ -36,11 +31,11 @@ class BMS
     bool ValidateHighWarning(float value, parameterInfo &info);
     bool ValidateLowWarning(float value, parameterInfo &info);
     bool ValidateRange(float value, parameterInfo &info);
-
+    void AdjustUnit(float &value, parameterInfo& info, std::string unit);
 public:
     BMS();
     void AddParamter(parameterInfo info);
     void RemoveParamter(parameterInfo info);
 
-    bool IsBatteryOK(std::string parameterName, float value);
+    bool IsBatteryOK(std::string parameterName, float value, std::string unit = "NO_UNIT");
 };

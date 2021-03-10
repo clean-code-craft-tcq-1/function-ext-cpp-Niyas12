@@ -65,6 +65,21 @@ bool BMS::ValidateRange(float value, parameterInfo& info)
     return ValidateBreach(value, info) && ValidateWarningLevel(value, info);
 }
 
+void BMS::AdjustUnit(float& value, parameterInfo& info, std::string unit)
+{
+    if (info.paramterName == "Temperature")
+    {
+        if (unit == "F")
+        {
+            value = (value - 32) * 5 / 9;
+        }
+        else if(unit != "C")
+        {
+            cout << "Invalid unit for temperature\n";
+        }
+    }
+}
+
 bool BMS::ValidateBreach(float value, parameterInfo& info)
 {
     return ValidateHighBreach(value, info) && ValidateLowBreach(value, info);
@@ -99,7 +114,7 @@ void BMS::RemoveParamter(parameterInfo info)
 }
 
 
-bool BMS::IsBatteryOK(std::string parameterName, float value)
+bool BMS::IsBatteryOK(std::string parameterName, float value, std::string unit )
 {
     auto itr = find_if(paramterList.begin(), paramterList.end(), [&](parameterInfo listInfo) {
         return listInfo.paramterName == parameterName;
@@ -107,6 +122,7 @@ bool BMS::IsBatteryOK(std::string parameterName, float value)
 
     if (itr != paramterList.end())
     {
+        AdjustUnit(value, *itr, unit);
         return ValidateRange(value, *itr);
     }
 }

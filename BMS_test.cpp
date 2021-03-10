@@ -7,6 +7,7 @@ void ConfigureBmsParamters(BMS& bms_instance)
 {
     parameterInfo temperature;
     temperature.paramterName = "Temperature";
+    temperature.unit = "C";
     temperature.low_breach = 0;
     temperature.high_breach = 45;
     temperature.low_warning = 5;
@@ -14,6 +15,7 @@ void ConfigureBmsParamters(BMS& bms_instance)
 
     parameterInfo soc;
     soc.paramterName = "SOC";
+    soc.unit = "NO_UNIT";
     soc.low_breach = 10;
     soc.high_breach = 80;
     soc.low_warning = 15;
@@ -21,6 +23,7 @@ void ConfigureBmsParamters(BMS& bms_instance)
 
     parameterInfo chargeRate;
     chargeRate.paramterName = "ChargeRate";
+    chargeRate.unit = "NO_UNIT";
     chargeRate.low_breach = NO_LIMIT;
     chargeRate.high_breach = 80;
     chargeRate.low_warning = NO_LIMIT;
@@ -37,9 +40,9 @@ int main() {
 
     ConfigureBmsParamters(bms_instance);
     
-    assert(bms_instance.IsBatteryOK("Temperature", 40) == true);      // temperature in limit   
-    assert(bms_instance.IsBatteryOK("Temperature", 46) == false);     // temperature high
-    assert(bms_instance.IsBatteryOK("Temperature", -2) == false);     // temperature low
+    assert(bms_instance.IsBatteryOK("Temperature", 50, "F") == true);      // temperature in limit   
+    assert(bms_instance.IsBatteryOK("Temperature", 122, "F") == false);     // temperature high
+    assert(bms_instance.IsBatteryOK("Temperature", 28, "F") == false);     // temperature low
     assert(bms_instance.IsBatteryOK("SOC", 40) == true);              // SOC in limit   
     assert(bms_instance.IsBatteryOK("SOC", -2) == false);             // SOC low
     assert(bms_instance.IsBatteryOK("SOC", 90) == false);             // SOC high
