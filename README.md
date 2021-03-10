@@ -61,4 +61,5 @@ Shorten the Semantic distance
 ## Extended support
 
 Extension 1: Early Warning
-Extension 3: Accept input in different units
+
+Extension 2: Accept input in different units
