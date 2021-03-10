@@ -11,7 +11,7 @@ bool BMS::ValidateHighBreach(float value, parameterInfo& info)
         auto status = info.high_breach >= value;
         if (!status)
         {
-            std::cout << info.paramterName << " : high breach\n";
+            std::cout << info.paramterName << "  " << value << " : high breach\n";
         }
         
         return status;
@@ -25,7 +25,7 @@ bool BMS::ValidateLowBreach(float value, parameterInfo& info)
         auto status = info.low_breach <= value;
         if (!status)
         {
-            std::cout << info.paramterName << " : Low breach\n";
+            std::cout << info.paramterName << "  "<< value <<" : Low breach\n";
         }
 
         return status;
@@ -39,7 +39,7 @@ bool BMS::ValidateHighWarning(float value, parameterInfo& info)
         auto status = info.high_warning >= value;
         if (!status)
         {
-            std::cout << "Warning : " << info.paramterName << " is high\n";
+            std::cout << "Warning : " << info.paramterName << "  " << value << " is high\n";
         }
 
         return status;
@@ -53,7 +53,7 @@ bool BMS::ValidateLowWarning(float value, parameterInfo& info)
         auto status = info.low_warning <= value;
         if (!status)
         {
-            std::cout << "Warning : " << info.paramterName << " is low\n";
+            std::cout << "Warning : " << info.paramterName << "  " << value << " is low\n";
         }
 
         return status;
