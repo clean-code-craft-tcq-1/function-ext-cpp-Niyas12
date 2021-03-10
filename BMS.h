@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <map>
 
 using namespace std;
 
@@ -16,24 +17,30 @@ enum ePARAMETER
 
 struct parameterInfo
 {
-    ePARAMETER eParameter;
-    float min;
-    float max;
+    std::string paramterName;
+    float low_breach;
+    float low_warning;
+    float high_breach;
+    float high_warning;
 };
 
 
 class BMS
 {
     vector<parameterInfo> paramterList;
-
-    bool ValidateMax(float value, float max);
-    bool ValidateMin(float value, float min);
-    bool ValidateRange(float value, float min, float max);
+    
+    bool ValidateHighBreach(float value, parameterInfo &info);
+    bool ValidateLowBreach(float value, parameterInfo &info);
+    bool ValidateBreach(float value, parameterInfo& info);
+    bool ValidateWarningLevel(float value, parameterInfo& info);
+    bool ValidateHighWarning(float value, parameterInfo &info);
+    bool ValidateLowWarning(float value, parameterInfo &info);
+    bool ValidateRange(float value, parameterInfo &info);
 
 public:
     BMS();
     void AddParamter(parameterInfo info);
     void RemoveParamter(parameterInfo info);
 
-    bool IsBatteryOK(ePARAMETER type, float value);
+    bool IsBatteryOK(std::string parameterName, float value);
 };
