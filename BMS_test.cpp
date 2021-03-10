@@ -43,7 +43,7 @@ int main() {
     assert(bms_instance.IsBatteryOK("SOC", 40) == true);              // SOC in limit   
     assert(bms_instance.IsBatteryOK("SOC", -2) == false);             // SOC low
     assert(bms_instance.IsBatteryOK("SOC", 90) == false);             // SOC high
-    assert(bms_instance.IsBatteryOK("ChargeRate", 80) == true);     // charge rate in limit
+    assert(bms_instance.IsBatteryOK("ChargeRate", 70) == true);     // charge rate in limit
     assert(bms_instance.IsBatteryOK("ChargeRate", 82) == false);     // charge rate high
 
 }
